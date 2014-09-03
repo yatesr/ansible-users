@@ -3,6 +3,7 @@
   group: name={{item.key}}
          gid={{item.value.uid}}
          state={{item.value.state | default('present')}}
+  ignore_errors: yes
   with_dict: users | default({})
   when: (item.value.uid is defined and users_default_create_user_group)
   tags: ['users','groups']
@@ -10,6 +11,7 @@
 - name: Manage user groups for users with no UIDs
   group: name={{item.key}}
          state={{item.value.state | default('present')}}
+  ignore_errors: yes
   with_dict: users | default({})
   when: (item.value.uid is not defined and users_default_create_user_group)
   tags: ['users','groups']
