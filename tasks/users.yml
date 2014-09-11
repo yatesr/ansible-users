@@ -62,7 +62,9 @@
 
 
 - name: Manage SSH Keys
-  authorized_key: user={{item.key}} key="{{item.value.ssh_key}}"
+  authorized_key: user={{item.key}} 
+                  key="{{item.value.ssh_key}}"
+                  manage_dir=yes
   with_dict: users | default({})
   when: (item.value.ssh_key is defined)
   tags: ['users','ssh-key']
