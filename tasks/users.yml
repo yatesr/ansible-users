@@ -4,7 +4,7 @@
          gid={{item.value.uid}}
          state={{item.value.state | default('present')}}
   ignore_errors: yes
-  with_dict: users | default({})
+  with_dict: "{{users | default({})}}"
   when: (item.value.uid is defined and users_default_create_user_group)
   tags: ['users','groups']
 
@@ -12,7 +12,7 @@
   group: name={{item.key}}
          state={{item.value.state | default('present')}}
   ignore_errors: yes
-  with_dict: users | default({})
+  with_dict: "{{users | default({})}}"
   when: (item.value.uid is not defined and users_default_create_user_group)
   tags: ['users','groups']
 
@@ -20,14 +20,14 @@
   group: name={{item.key}}
          gid={{item.value.gid}}
          state={{item.value.state | default('present')}}
-  with_dict: othergroups | default({})
+  with_dict: "{{othergroups | default({})}}"
   when: (item.value.gid is defined)
   tags: ['users','groups']
 
 - name: Manage other groups with no GIDs
   group: name={{item.key}}
          state={{item.value.state | default('present')}}
-  with_dict: othergroups | default({})
+  with_dict: "{{othergroups | default({})}}"
   when: (item.value.gid is not defined)
   tags: ['users','groups']
 
@@ -43,7 +43,7 @@
         system={{item.value.system | default('no')}}
         state={{item.value.state | default('present')}}
         remove={{item.value.remove | default('no')}}
-  with_dict: users | default({})
+  with_dict: "{{users | default({})}}"
   when: (item.value.uid is defined)
   tags: ['users','groups']
 
@@ -58,7 +58,7 @@
         system={{item.value.system | default('no')}}
         state={{item.value.state | default('present')}}
         remove={{item.value.remove | default('no')}}
-  with_dict: users | default({})
+  with_dict: "{{users | default({})}}"
   when: (item.value.uid is not defined)
   tags: ['users','groups']
 
@@ -67,6 +67,6 @@
   authorized_key: user={{item.key}} 
                   key="{{item.value.ssh_key}}"
                   manage_dir=yes
-  with_dict: users | default({})
+  with_dict: "{{users | default({})}}"
   when: (item.value.ssh_key is defined)
   tags: ['users','ssh-key']
