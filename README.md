@@ -1,5 +1,6 @@
 Role Name
 ========
+[![Build Status](https://travis-ci.org/yatesr/ansible-users.svg?branch=master)](https://travis-ci.org/yatesr/ansible-users)
 
 users
 
@@ -18,7 +19,7 @@ users_default_createhome
 
 # Creates groups based on user name. If you disable this you must set the `group` for each user and the group must exist or created in `othergroups`.
 users_default_create_user_group
- 
+
 # When state is set to absent, also remove the users home directory.
 users_default_removehome
 
