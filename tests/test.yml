@@ -1,0 +1,18 @@
+---
+- hosts: all
+  roles:
+  - role_under_test
+
+  vars:
+    othergroups:
+      testadmin:
+        gid: 2001
+      somegroup:
+        gid: 2002
+    users:
+      test1:
+        groups: 'testadmin,somegroup'
+        comment: 'Test User 1'
+        shell: '/bin/zsh'
+        uid: 3000
+        createhome: yes
